@@ -116,7 +116,7 @@ def msg_ck(m):
         temp_msg()
         text_ck=2
         print("資訊_ok")
-    if m=="地震資訊":
+    if m=="地震資訊" or m=="地震":
         earth_temp_msg()
         text_ck=2
         print("地震資訊_ok")
@@ -133,7 +133,7 @@ def msg_ck(m):
         text_ck=2
         print("大地震_ok")
 
-
+#資訊介面
 def temp_msg():
     line_bot_api = LineBotApi(iot_token)
     line_bot_api.push_message(iot_userid, TemplateSendMessage(
@@ -163,9 +163,10 @@ def temp_msg():
     )
 ))
 
+#地震資訊介面
 def earth_temp_msg():
     line_bot_api = LineBotApi(iot_token)
-    line_bot_api.push_message(iot_userid, TemplateSendMessage(
+    line_bot_api.push_message(userid, TemplateSendMessage(
     alt_text='地震資訊',
     template=ButtonsTemplate(
         thumbnail_image_url='https://d1j71ui15yt4f9.cloudfront.net/wp-content/uploads/2022/09/18001312/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-2022-09-18-001145-786x1024.jpg',
@@ -251,9 +252,9 @@ def earth(url):
         eq_time = i['EarthquakeInfo']['OriginTime']               # 地震時間
         #print(f'地震發生於{loc}，芮氏規模 {val} 級，深度 {dep} 公里，發生時間 {eq_time}')
         img = i['ReportImageURI']
-        msg = f'\n{loc}\n芮氏規模 {val} 級\n深度 {dep} 公里\n發生時間 {eq_time}'
+        msg = f'{loc}\n芮氏規模 {val} 級\n深度 {dep} 公里\n發生時間 {eq_time}'
         #print(msg)
-
+        '''
         token = notify_token 
         headers = {
             'Authorization': 'Bearer ' + token      # POST 使用的 headers
@@ -264,6 +265,34 @@ def earth(url):
             'imageFullsize':img       # 完整圖片網址
         }
         data = requests.post(l_notify_url, headers=headers, data=data)    # 發送 LINE NOtify
+        '''
+        #push
+        headers = {
+            'Authorization':'Bearer '+iot_token,
+            'Content-Type':'application/json'
+        }
+
+        #reply text
+        body = {
+            'replyToken':reply_token,
+            'messages':[{
+                    'type': 'text',
+                    'text':msg
+                }]
+        }
+        
+        #push img
+        ibody = {
+            'to':userid,
+            'messages':[{
+                'type': 'image',
+                'originalContentUrl':img,
+                'previewImageUrl':img
+                }]
+            }
+        req = requests.request('POST', l_reply_url,headers=headers,data=json.dumps(body).encode('utf-8'))
+        ireq = requests.request('POST', l_push_url,headers=headers,data=json.dumps(ibody).encode('utf-8'))
+
         break
 
 if __name__ == "__main__":
