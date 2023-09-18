@@ -253,7 +253,6 @@ def earth(url):
         #print(f'地震發生於{loc}，芮氏規模 {val} 級，深度 {dep} 公里，發生時間 {eq_time}')
         img = i['ReportImageURI']
         msg = f'{loc}\n芮氏規模 {val} 級\n深度 {dep} 公里\n發生時間 {eq_time}'
-        #print(msg)
         '''
         token = notify_token 
         headers = {
@@ -266,34 +265,38 @@ def earth(url):
         }
         data = requests.post(l_notify_url, headers=headers, data=data)    # 發送 LINE NOtify
         '''
-        #push
-        headers = {
-            'Authorization':'Bearer '+iot_token,
-            'Content-Type':'application/json'
-        }
-
-        #reply text
-        body = {
-            'replyToken':reply_token,
-            'messages':[{
-                    'type': 'text',
-                    'text':msg
-                }]
-        }
-        
-        #push img
-        ibody = {
-            'to':userid,
-            'messages':[{
-                'type': 'image',
-                'originalContentUrl':img,
-                'previewImageUrl':img
-                }]
-            }
-        req = requests.request('POST', l_reply_url,headers=headers,data=json.dumps(body).encode('utf-8'))
-        ireq = requests.request('POST', l_push_url,headers=headers,data=json.dumps(ibody).encode('utf-8'))
+        #push data
+        push_msg(msg,img)
 
         break
+
+#push message function
+def push_msg(msg,img):
+    headers = {
+        'Authorization':'Bearer '+iot_token,
+        'Content-Type':'application/json'
+    }
+
+    #reply text
+    body = {
+        'replyToken':reply_token,
+        'messages':[{
+                'type': 'text',
+                'text':msg
+            }]
+    }
+    
+    #push img
+    ibody = {
+        'to':userid,
+        'messages':[{
+            'type': 'image',
+            'originalContentUrl':img,
+            'previewImageUrl':img
+            }]
+        }
+    req = requests.request('POST', l_reply_url,headers=headers,data=json.dumps(body).encode('utf-8'))
+    ireq = requests.request('POST', l_push_url,headers=headers,data=json.dumps(ibody).encode('utf-8'))
 
 if __name__ == "__main__":
     app.run()
