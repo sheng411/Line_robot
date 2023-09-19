@@ -278,6 +278,7 @@ def earth(url):
 
         break
 
+
 # 目前天氣函式
 def current_weather(address):
     city_list, area_list, area_list2 = {}, {}, {} # 定義好待會要用的變數
