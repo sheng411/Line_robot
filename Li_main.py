@@ -36,12 +36,12 @@ def linebot():
         else:
             userid = json_data['events'][0]['source']['userId']  # 取得 userid
 
-        if 'message' in json_data['events'][0]:
+        '''if 'message' in json_data['events'][0]:
             if json_data['events'][0]['message']['type'] == 'location':
                 address = json_data['events'][0]['message']['address'].replace('台','臺')
                 # 回覆爬取到的相關氣象資訊
-                reply_msg(f'{address}\n\n{current_weather(address)}', reply_token, access_token)
-                print(address)
+                reply_msg(f'{address}\n\n{current_weather(address)}')
+                print(address)'''
 
         if tp == 'text':
             # 如果是文字類型的訊息
@@ -278,7 +278,7 @@ def earth(url):
 
         break
 
-
+'''
 # 目前天氣函式
 def current_weather(address):
     city_list, area_list, area_list2 = {}, {}, {} # 定義好待會要用的變數
@@ -322,6 +322,7 @@ def current_weather(address):
         return a
 
     try:
+        # 因為目前天氣有兩組網址，兩組都爬取
         get_data(weather_1_url)
         get_data(weather_2_url)
 
@@ -336,6 +337,7 @@ def current_weather(address):
         return msg    # 回傳 msg
     except:
         return msg    # 如果取資料有發生錯誤，直接回傳 msg
+'''
 
 #push message function
 def push_msg(img):
