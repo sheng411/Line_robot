@@ -63,6 +63,7 @@ def linebot():
                 # 如果要回傳的訊息是 text，使用 TextSendMessage 方法
                 if text_ck==0:
                     msg[1]="你傳的是:"+msg[1]
+                    line_bot_api.reply_message(tk,TextSendMessage(text=msg[1]))
                 if text_ck==1:
                     msg[1]=msg[1]
                     line_bot_api.reply_message(tk,TextSendMessage(text=msg[1]))
@@ -94,7 +95,7 @@ def linebot():
             line_bot_api.reply_message(tk,TextSendMessage(text='天籟天籟'))
         if tp == 'video':
             # 如果是收到的訊息是影片
-            line_bot_api.reply_message(tk,TextSendMessage(text='影片內容真是不錯!'))
+            line_bot_api.reply_message(tk,TextSendMessage(text='影片讚哦!'))
     except:
         print('error', body)
     return 'OK'
@@ -149,11 +150,7 @@ def temp_msg():
         thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo.jpg',
         title='我還沒想到要用什麼',
         text='這是按鈕樣板',
-        actions=[
-            PostbackAction(
-                label='postback',
-                data='temp_test'
-            ),
+        actions=[        
             MessageAction(
                 label='我可以幹嘛?',
                 text='help'
@@ -161,6 +158,10 @@ def temp_msg():
             URIAction(
                 label='不要點這個網址',
                 uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            ),
+            URIAction(
+                label='中油油價官網',
+                uri='https://www.cpc.com.tw/historyprice.aspx?n=2890'
             ),
             URIAction(
                 label='node-red儀表板',
@@ -273,8 +274,9 @@ def earth(url):
         data = requests.post(l_notify_url, headers=headers, data=data)    # 發送 LINE NOtify
         '''
         #push data
-        push_msg(img)
         reply_msg(msg)
+        push_msg(img)
+        
 
         break
 
