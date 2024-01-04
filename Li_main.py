@@ -3,6 +3,8 @@ from a_location import locat
 from a_img import img
 from a_msg import msg
 from flask import Flask, request
+from cpc_text import *
+#from remind import re_io
 import json
 from linebot import LineBotApi, WebhookHandler
 from linebot.models import TextSendMessage, StickerSendMessage, ImageSendMessage, LocationSendMessage,PostbackAction,URIAction, MessageAction, TemplateSendMessage, ButtonsTemplate
@@ -140,6 +142,14 @@ def msg_ck(m):
         earth(b_earth_jurl)
         text_ck=2
         print("大地震_ok")
+    if m=="下週油價" or m=="下週油價" or m=="油價":
+        reply_msg(CPC_oil_prices())
+        text_ck=2
+    '''
+    if m=="@提醒":
+        re_io()
+        text_ck=2
+    '''
 
 #資訊介面
 def temp_msg():
