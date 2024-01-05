@@ -34,14 +34,14 @@ def CPC_oil_prices():
     difference=oil_prices[0]-oil_prices[1]
     
     if difference>0:
-        msg=f"最新一筆資料時間\n{oil_new_time[0]}\n95無鉛汽油:{oil_prices[0]}\n*油價上漲*,漲幅:{round(abs(difference), 1)}"
+        msg=f"最新一筆資料時間\n{oil_new_time[0]}\n\n95無鉛汽油: {oil_prices[0]}\n\n*油價上漲*, 漲幅: {round(abs(difference), 1)}"
         return msg
     elif difference<0:
-        msg=f"最新一筆資料時間\n{oil_new_time[0]}\n95無鉛汽油:{oil_prices[0]}\n*油價下跌*,跌幅:{round(abs(difference), 1)}"
+        msg=f"最新一筆資料時間\n{oil_new_time[0]}\n\n95無鉛汽油: {oil_prices[0]}\n\n*油價下跌*, 跌幅: {round(abs(difference), 1)}"
         return msg
         #return "\noil down",round(abs(difference), 1),"\nLatest Information Time->",oil_new_time[0]
     else:
-        return f"最新一筆資料時間\n{oil_new_time[0]}\n95無鉛汽油:{oil_prices[0]}\n*油價不變動*{round(abs(difference), 1)}"
+        return f"最新一筆資料時間\n{oil_new_time[0]}\n\n95無鉛汽油: {oil_prices[0]}\n\n*油價不變動*{round(abs(difference), 1)}"
     return msg
 
 #print(CPC_oil_prices())
