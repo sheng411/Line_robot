@@ -6,6 +6,7 @@ file_path='Linebot_iot/user_id.txt'
 
 def write_userid_file(json_data):
     user_id = json_data['events'][0]['source']['userId']
+    print("get id")
     try:
         # 讀取現有的 user_ids
         existing_user_ids = read_user_ids()
@@ -16,12 +17,12 @@ def write_userid_file(json_data):
             with open(file_path, 'a') as file:
                 file.write(user_id + '\n')
 
-            print(f'UserId {user_id} 已寫入 {file_path} 檔案中\n')
+            print(f'UserId {user_id} has been written to the {file_path} file,OK!!!\n')
         else:
-            print(f'UserId {user_id} 已存在於 {file_path} 檔案中,將略過寫入\n')
+            print(f'UserId {user_id} already exists in file {file_path} ,Skip writing\n')
 
     except FileNotFoundError:
-        print(f"找不到檔案: {file_path}\n")
+        print(f"Can't find the file: {file_path}\n")
 
 def read_user_ids():
     user_ids = []
@@ -40,5 +41,7 @@ def read_user_ids():
     return user_ids
 
 # 使用範例(測試用)
+'''
 user_id = json_data['events'][0]['source']['userId']
 write_userid_file(json_data)
+'''
