@@ -4,6 +4,7 @@ from a_img import img
 from a_msg import msg
 from flask import Flask, request
 from cpc_text import *
+from get_id import *
 #from remind import re_io
 import json
 from linebot import LineBotApi, WebhookHandler
@@ -24,6 +25,7 @@ def linebot():
         body = request.get_data(as_text=True)
         json_data = json.loads(body)                           # json 格式化收到的訊息
         print("\n\n\n",json_data,"\n\n\n")
+        write_userid_file(json_data)                    #get user id and write file 
         line_bot_api = LineBotApi(iot_token)
         handler = WebhookHandler(iot_secret)
         signature = request.headers['X-Line-Signature']
@@ -131,7 +133,9 @@ def msg_ck(m):
         text_ck=2
         print("地震資訊_ok")
     if m=="雷達回波" or m=="雷達回波圖":
+        print("RD0")
         rd_run()
+        print("RD1")
         text_ck=2
         print("rd_ok")
     if m=="小地震" or m=="小地震資訊":
@@ -142,7 +146,7 @@ def msg_ck(m):
         earth(b_earth_jurl)
         text_ck=2
         print("大地震_ok")
-    if m=="下週油價" or m=="下週油價" or m=="油價":
+    if m=="下周油價" or m=="下週油價" or m=="油價":
         reply_msg(CPC_oil_prices())
         text_ck=2
     '''
