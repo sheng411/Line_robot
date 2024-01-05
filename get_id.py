@@ -1,11 +1,14 @@
 import json
 
-packet_content = {}
+json_data ={}#{'destination': 'Uc70b27a36f076c509e7a487e26a5f756', 'events': [{'type': 'message', 'message': {'type': 'text', 'id': '489227869973643270', 'quoteToken': 'wXzZiOFhkADF6Cw56HAS7Dnu4ij9b5MvJTbRx5oLOGSGDl1rBk1ULRiNnZreGMXusAy490N6IdsimqKt9dQXgSx_jRh4U5omk-ldFbZM1ZYLc8iMA7MdaVd83OrY6jS-7-aFalop-S5VGsWTFJWy-g', 'text': '雷達回波圖'}, 'webhookEventId': '01HKC2RTEH95N3E4ZBM4VJ6VK1', 'deliveryContext': {'isRedelivery': False}, 'timestamp': 1704433838232, 'source': {'type': 'user', 'userId': 'Uf48f0ce5840bd06db633ef9a3202e2d1'}, 'replyToken': '6b3b20341ebd403088a231ac714991c8', 'mode': 'active'}]}
+file_path='Linebot_iot/user_id.txt'
 
-def write_user_id_to_file(user_id, file_path='user_id.txt'):
+
+def write_userid_file(json_data):
+    user_id = json_data['events'][0]['source']['userId']
     try:
         # 讀取現有的 user_ids
-        existing_user_ids = read_user_ids(file_path)
+        existing_user_ids = read_user_ids()
 
         # 判斷是否已經存在
         if user_id not in existing_user_ids:
@@ -20,9 +23,8 @@ def write_user_id_to_file(user_id, file_path='user_id.txt'):
     except FileNotFoundError:
         print(f"找不到檔案: {file_path}\n")
 
-def read_user_ids(file_path='user_id.txt'):
+def read_user_ids():
     user_ids = []
-
     try:
         # 開啟檔案並讀取每一行
         with open(file_path, 'r') as file:
@@ -37,6 +39,6 @@ def read_user_ids(file_path='user_id.txt'):
 
     return user_ids
 
-# 使用範例
-user_id = packet_content['events'][0]['source']['userId']
-write_user_id_to_file(user_id)
+# 使用範例(測試用)
+user_id = json_data['events'][0]['source']['userId']
+write_userid_file(json_data)

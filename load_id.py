@@ -1,6 +1,7 @@
-def read_user_ids(file_path='user_id.txt'):
-    user_ids = []
+file_path='Linebot_iot/user_id.txt'
 
+def read_user_ids():
+    user_ids = []
     try:
         # 開啟檔案並讀取每一行
         with open(file_path, 'r') as file:
