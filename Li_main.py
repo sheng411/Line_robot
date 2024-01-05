@@ -24,6 +24,9 @@ def linebot():
     try:
         body = request.get_data(as_text=True)
         json_data = json.loads(body)                           # json 格式化收到的訊息
+        if json_data['events'][0]['type']=="postback":
+            post_back_msg=json_data['events'][0]['postback']['data']
+            reply_msg(CPC_oil_prices(post_back_msg))
         print("\n\n\n",json_data,"\n\n\n")
         write_userid_file(json_data)                    #get user id and write file 
         line_bot_api = LineBotApi(iot_token)
@@ -147,7 +150,8 @@ def msg_ck(m):
         text_ck=2
         print("大地震_ok")
     if m=="下周油價" or m=="下週油價" or m=="油價":
-        reply_msg(CPC_oil_prices())
+        CPC_oil_temp_msg()
+        #reply_msg(CPC_oil_prices())
         text_ck=2
     '''
     if m=="@提醒":
@@ -158,7 +162,7 @@ def msg_ck(m):
 #資訊介面
 def temp_msg():
     line_bot_api = LineBotApi(iot_token)
-    line_bot_api.push_message(iot_userid, TemplateSendMessage(
+    line_bot_api.push_message(userid, TemplateSendMessage(
     alt_text='資訊介面',
     template=ButtonsTemplate(
         thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo.jpg',
@@ -170,16 +174,46 @@ def temp_msg():
                 text='help'
             ),
             URIAction(
-                label='不要點這個網址',
+                label='不要點這個',
                 uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             ),
             URIAction(
-                label='中油油價官網',
-                uri='https://www.cpc.com.tw/historyprice.aspx?n=2890'
+                label='*待放入*',
+                uri='https://www.youtube.com/watch?v=5LrZ1JpDHXE'
             ),
             URIAction(
                 label='node-red儀表板',
                 uri='http://140.127.196.119:18815/ui/#!/0?socketid=0chTv_64rh4pFhuyAAAr'
+            )
+        ]
+    )
+))
+
+#CPC oil prices
+def CPC_oil_temp_msg():
+    line_bot_api = LineBotApi(iot_token)
+    line_bot_api.push_message(userid, TemplateSendMessage(
+    alt_text='中油油價',
+    template=ButtonsTemplate(
+        thumbnail_image_url='https://www.sdgs-asia.com.tw/wp-content/uploads/2023/05/%E4%B8%AD%E6%B2%B9.png',
+        title='油價資訊',
+        text='點選下方按鈕選擇想看到的油價資訊\n*每個對話框只會輸出一個結果*',
+        actions=[
+            PostbackAction(
+                label='98無鉛',
+                data='98'
+            ),
+            PostbackAction(
+                label='95無鉛',
+                data='95'
+            ),
+            PostbackAction(
+                label='92無鉛',
+                data='92'
+            ),
+            URIAction(
+                label='中油油價官網',
+                uri='https://www.cpc.com.tw/historyprice.aspx?n=2890'
             )
         ]
     )
