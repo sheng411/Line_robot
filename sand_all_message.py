@@ -9,7 +9,7 @@ channel_access_token = iot_token
 user_ids = read_user_ids()
 
 #"This's a test message from a group.\n\nIf you receive this message, please reply to me."
-type_in=input("type(New/Update)-->")
+type_in=input("title(New/Update/other)-->")
 text_input=input("msg->")
 text=f"*{type_in}*\n{text_input}"
 
