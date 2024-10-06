@@ -1,7 +1,0 @@
-iot
-
-Channel access token
-'kk9qrzHELb22Qu4lumGepmT10lipIIuBY5eXjfxyn3x4hdz6INrQiCO1OSo9HxfzARr7vP3PUjbU39bOXXr7ypnkwsBq/23xLFwt8gcms5iF4DfxpNEzAa4kik7MF1V1TQI96wNdk+R41H48NGS5rAdB04t89/1O/w1cDnyilFU='
-
-Channel secret
-'9c976b436f42830e365637f384754565'
