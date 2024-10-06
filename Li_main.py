@@ -159,11 +159,11 @@ def msg_ck(m):
         text_ck=2
     '''
 
-#資訊介面
+#information interface
 def temp_msg():
     line_bot_api = LineBotApi(iot_token)
     line_bot_api.push_message(userid, TemplateSendMessage(
-    alt_text='資訊介面',
+    alt_text='information interface',
     template=ButtonsTemplate(
         thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo.jpg',
         title='我還沒想到要用什麼',
@@ -180,10 +180,6 @@ def temp_msg():
             URIAction(
                 label='*待放入*',
                 uri='https://www.youtube.com/watch?v=5LrZ1JpDHXE'
-            ),
-            URIAction(
-                label='node-red儀表板',
-                uri='http://140.127.196.119:18815/ui/#!/0?socketid=0chTv_64rh4pFhuyAAAr'
             )
         ]
     )
