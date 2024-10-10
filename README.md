@@ -11,8 +11,8 @@ Line ID:@195ygcba
 - [目的](https://github.com/sheng411/Line_robot?tab=readme-ov-file#%E7%9B%AE%E7%9A%84)
 - [支援列表](https://github.com/sheng411/Line_robot?tab=readme-ov-file#%E6%94%AF%E6%8F%B4%E5%88%97%E8%A1%A8)
   - [地震資訊](https://github.com/sheng411/Line_robot?tab=readme-ov-file#-%E5%9C%B0%E9%9C%87%E8%B3%87%E8%A8%8A)
-  - [雷達回波圖](https://github.com/sheng411/Line_robot?tab=readme-ov-file#-%E5%9C%B0%E9%9C%87%E8%B3%87%E8%A8%8A)
-  - [下週油價](https://github.com/sheng411/Line_robot?tab=readme-ov-file#-%E5%9C%B0%E9%9C%87%E8%B3%87%E8%A8%8A)
+  - [雷達回波圖](https://github.com/sheng411/Line_robot?tab=readme-ov-file#-%E9%9B%B7%E9%81%94%E5%9B%9E%E6%B3%A2%E5%9C%96)
+  - [下週油價](https://github.com/sheng411/Line_robot?tab=readme-ov-file#-%E4%B8%8B%E9%80%B1%E6%B2%B9%E5%83%B9)
 
 
 # 架構圖
